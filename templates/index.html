@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khmer Text Normalization</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Khmer:wght@100..900&family=Playwrite+AR:wght@100..400&family=Playwrite+MX:wght@100..400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div>
+                <div class="dropdown">
+                    <button class="dropbtn"><i class="fa-solid fa-bars"></i></button>
+                    <div class="dropdown-content">
+                        <a href="https://github.com/sillsdev/khmer-character-specification" target="_blank">Normalizer Code</a>
+                        <a href="https://xn--j2e7beiw1lb2hqg.com/" target="_blank">ភាសាខ្មែរ.com</a>
+                    </div>
+                </div>
+            </div>
+            <div class="logo">
+                <img style="height: 100px;" src="/static/image/logo.png">
+            </div>
+        </header>
+        <div class="title">Khmer Text Normalizer</div>
+        <div class="subtitle">Convert Khmer Texts To The Correct Unicode Form</div>
+
+        <div class="row">
+            <div class="col">
+                <div id = "content">
+                    <div id="character-grid" class='rounded-3'></div>
+                </div>
+            </div>
+            
+            <div class="col">
+                <div id = "content">
+                    <div id="output-grid" class='rounded-3'></div>
+                </div>
+            </div>
+        </div>
+
+        <form id="normalizer-form" action="/" method="post">
+            <div class="row">
+                <div class="col">
+                    <textarea id="ta1" name="input_text" placeholder="សូមសរសេរជាភាសាខ្មែរ">{{ input_text }}</textarea>
+                    <div class="button-area">
+                        <button class="upload-button" type="submit" value="Normalize">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i> Normalize
+                        </button>
+                        <input type="file" id="file-input" accept=".txt" style="display: none;">
+                        <button class="upload-button" type="button" id="load-file-button">
+                            <i class="fa-solid fa-file-arrow-up"></i> Load File
+                        </button>
+                        <button class="upload-button" type="button" id="clear-button">
+                            <i class="fa-solid fa-trash"></i> Clear
+                        </button>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <textarea id="ta2" name="normalized_text" readonly>{{ normalized_text }}</textarea>
+                    <div class="button-area">
+                        <button class="upload-button" type="button" id="copy-button">
+                            <i class="fa-solid fa-copy"></i> Copy Text</button>
+                        <button class="upload-button" type="button" id="download-button">
+                            <i class="fa-solid fa-download"></i> Download</button>
+                    </div>
+                </div>
+            </div>
+            
+        </form>
+    </div>
+
+    <script src="/static/chargrid.js"></script>
+    <script src="/static/outputgrid.js"></script>
+    <script src = "/static/script.js"></script>
+</body>
+</html>
