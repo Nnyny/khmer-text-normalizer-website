@@ -45,7 +45,19 @@
           }
       }
       updateLogCursor();
+      checkCharacterCount()
   }
+
+    // Check character count after logging content
+    function checkCharacterCount() {
+        const charCount = charGrid.childNodes.length;
+        if (charCount >= 17) {
+            charGrid.classList.add("hidden");
+        } else {
+            charGrid.classList.remove("hidden");
+        }
+    }
+
 
   function updateLogCursor() {
       var i, selStart, selLength, selDirection;
@@ -53,7 +65,6 @@
       selLength = inputkh.selectionEnd - inputkh.selectionStart;
       selDirection = inputkh.selectionDirection;
 
-      // Adjust for surrogate pairs if necessary
       selLength = calculateLengthByCodepoint(inputkh.value, selStart, selLength);
       selStart = calculateLengthByCodepoint(inputkh.value, 0, selStart);
 
@@ -96,10 +107,10 @@
       return ('ontouchstart' in window || navigator.maxTouchPoints);
   }
 
-  inputkh.addEventListener('input', logContent);  // Update on input events
+  inputkh.addEventListener('input', logContent); 
   inputkh.addEventListener('click', updateLogCursor);
   inputkh.addEventListener('keydown', updateLogCursor);
 
-  logContent();  // Initial content load
+  logContent();
   window.setInterval(logContent, 100);
 })();

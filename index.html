@@ -4,14 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Khmer Text Normalization</title>
-    <link rel="icon" href="image/KSE-Logo-Main.png">
+    <title>Khmer Text Normalization Demo</title>
+    <link rel="icon" href="image/KES-logo-white.png">
 
     <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="fonts/font.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Khmer:wght@100..900&family=Playwrite+AR:wght@100..400&family=Playwrite+MX:wght@100..400&display=swap">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 </head>
 <body>
     <div class="container">
@@ -20,20 +23,23 @@
                 <div class="dropdown">
                     <button class="dropbtn"><i class="fa-solid fa-bars"></i></button>
                     <div class="dropdown-content">
-                        <a href="https://github.com/sillsdev/khmer-character-specification" target="_blank">Normalizer Code</a>
+                        <a href="https://www.idri.edu.kh/research/khmer-encoding-structure/" target="_blank">Khmer Encoding Structure website</a>
                         <a href="https://xn--j2e7beiw1lb2hqg.com/" target="_blank">ភាសាខ្មែរ.com</a>
+                        <a href="#" data-toggle="modal" data-target="#aboutUs">About Us</a>
+                        <a href="#" data-toggle="modal" data-target="#help">Help</a>
                     </div>
                 </div>
             </div>
             <div class="logo">
-                <img src="/image/KES-logo-blue.png">
-                <img src="/image/sil_glyph_logo_taiheritagepro_rgb.png">
+                <img src="/image/KES-logo-navy.png">
+                <img src="/image/clo.png">
             </div>
         </header>
 
-        <div class="title">Khmer Text Normalizer</div>
-        <div class="subtitle">Convert Khmer Texts To The Correct Unicode Form</div>
+        <div class="title">Khmer Text Normalization Demo</div>
+        <div class="subtitle">Convert Khmer texts to a regular Khmer Encoding Structure form</div>
 
+        <!-- grid -->
         <div class="row">
             <div class="col">
                 <div id = "content">
@@ -47,9 +53,10 @@
             </div>
         </div>
 
+        <!-- textarea -->
         <div class="row">
             <div class="col">
-                <textarea id="inputkh" name="input_text" placeholder="សូមសរសេរជាភាសាខ្មែរ"></textarea>
+                <textarea id='inputkh' placeholder="សូមសរសេរជាភាសាខ្មែរ" class='font-khmer-busra-test'></textarea>
                 <div class="button-area">
                     <button class="upload-button" type="button" id="normalizetxt">
                         <i class="fa-solid fa-wand-magic-sparkles"></i> Normalize
@@ -65,7 +72,7 @@
             </div>
 
             <div class="col">
-                <textarea id="outputkh" name="normalized_text" readonly></textarea>
+                <textarea id="outputkh" name="normalized_text" class='font-khmer-busra-test' readonly></textarea>
                 <div class="button-area">
                     <button class="upload-button" type="button" id="copy-button">
                         <i class="fa-solid fa-copy"></i> Copy Text</button>
@@ -74,13 +81,95 @@
                 </div>
             </div>
         </div>
-
     </div>
+  
+    <!-- Modal -->
+    <div class="modal fade" id="aboutUs" tabindex="-1" role="dialog" aria-labelledby="aboutModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="aboutModalLabel">About Khmer Text Normalization Demo</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <p>...</p>
+                <p>More details:</p>
+                <ul>
+                    <li><span class="bi-globe-asia-australia"></span> <a href="https://www.idri.edu.kh/research/khmer-encoding-structure/">Khmer Encoding Structure website</a></li>
+                    <li><span class="bi-envelope-at"></span> <a href="mailto:camlingorg@gmail.com">Contact Us</a></li>
+                </ul>
+          
+                <p>&copy; 2024 Cambodia Linguistics Organization</p>
+                <p><img src="image/clo-big.png" style="width: 100%" alt="Cambodia Linguistics Organization logo"></p>
+
+                <p style="text-align: center">
+                    <a href="https://www.sil.org" target="_blank"><img src="image/sil.png" style="width:30%" alt="SIL Global"></a>
+                    <a href="https://npic.edu.kh" target="_blank"><img src="image/npic.png" style="width:30%" alt="National Polytechnic Institute of Cambodia"></a>
+                    <a href="https://www.cadt.edu.kh" target="_blank"><img src="image/cadt.png" style="width:30%" alt="Cambodia Academy of Digital Technology"></a>
+                </p>
+
+
+            </div>
+            <div class="modal-footer">
+            <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+            <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="help" tabindex="-1" role="dialog" aria-labelledby="helpModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="helpModalLabel">Help</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>...</p>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="icon">
+                <a href="https://github.com/clo-org-kh/khmer-text-normalizer-website" target="_blank">
+                    <img class="svg" src="/image/github.svg">khmer-text-normalizer-website
+                </a>
+            </div>
+            <div class="icon">
+                <a href="https://github.com/sillsdev/khmer-character-specification/tree/master/python/scripts" target="_blank">
+                    <img class="svg" src="/image/python.svg">Khmer Encoding Structure specification
+                </a>
+            </div>
+            <div class="icon">
+                <a href="https://www.npmjs.com/package/khmer-normalizer" target="_blank">
+                    <img class="svg" src="/image/npm.svg">khmer-normalizer
+                </a>
+            </div>
+        </div>
+    </footer>
+
 
     
     <script src="/js/index.js"></script>
     <script src="/js/inputgrid.js"></script>
     <script src ="/js/outputgrid.js"></script>
     <script type="module" src="/js/khnormal.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>
