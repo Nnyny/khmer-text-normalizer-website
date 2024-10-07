@@ -10,26 +10,27 @@
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./fonts/font.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Khmer:wght@100..900&family=Playwrite+AR:wght@100..400&family=Playwrite+MX:wght@100..400&display=swap">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 </head>
 <body>
     <div class="container">
         <header>
-            <div>
-                <div class="dropdown">
-                    <button class="dropbtn"><i class="fa-solid fa-bars"></i></button>
-                    <div class="dropdown-content">
-                        <a href="https://www.idri.edu.kh/research/khmer-encoding-structure/" target="_blank">Khmer Encoding Structure website</a>
-                        <a href="https://xn--j2e7beiw1lb2hqg.com/" target="_blank">ភាសាខ្មែរ.com</a>
-                        <a href="#" data-toggle="modal" data-target="#aboutUs">About Us</a>
-                        <a href="#" data-toggle="modal" data-target="#help">Help</a>
+            <div class="dropdown">
+                <button class="dropbtn"><i class="fa-solid fa-bars"></i></button>
+                <div class="dropdown-content">
+                    <div class="module-links">
+                        <a href="https://www.npmjs.com/package/khmer-normalizer" target="_blank">NPM module</a>
+                        <span>|</span>
+                        <a href="https://github.com/sillsdev/khmer-character-specification/tree/master/python/scripts" target="_blank">Python module</a>
                     </div>
+                    <a href="https://www.idri.edu.kh/research/khmer-encoding-structure/" target="_blank">Khmer Encoding Structure website</a>
+                    <a href="https://xn--j2e7beiw1lb2hqg.com/" target="_blank">ភាសាខ្មែរ.com</a>
+                    <a href="#" data-toggle="modal" data-target="#aboutUs">About Us</a>
+                    <a href="#" data-toggle="modal" data-target="#help">Help</a>
                 </div>
             </div>
+
             <div class="logo">
                 <img src="./image/KES-logo-navy.png">
                 <img src="./image/clo.png">
@@ -58,15 +59,15 @@
             <div class="col">
                 <textarea id='inputkh' placeholder="សូមសរសេរជាភាសាខ្មែរ" class='font-khmer-busra-test'></textarea>
                 <div class="button-area">
-                    <button class="upload-button" type="button" id="normalizetxt">
-                        <i class="fa-solid fa-wand-magic-sparkles"></i> Normalize
+                    <button class="upload-button" type="button" id="clear-button">
+                        <i class="fa-solid fa-trash"></i> Clear
                     </button>
                     <input type="file" id="file-input" accept=".txt" style="display: none;">
                     <button class="upload-button" type="button" id="load-file-button">
                         <i class="fa-solid fa-file-arrow-up"></i> Load File
                     </button>
-                    <button class="upload-button" type="button" id="clear-button">
-                        <i class="fa-solid fa-trash"></i> Clear
+                    <button class="upload-button" type="button" id="normalizetxt">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> Normalize
                     </button>
                 </div>
             </div>
@@ -94,11 +95,15 @@
             </button>
             </div>
             <div class="modal-body">
-                <p>...</p>
+                <p>
+                    This website showcases the capabilities of the Khmer Normalizer npm module, which is designed to transform 
+                    Khmer text into a correctly encoded format, ensuring both accuracy and consistency.
+                </p>
                 <p>More details:</p>
                 <ul>
-                    <li><span class="bi-globe-asia-australia"></span> <a href="https://www.idri.edu.kh/research/khmer-encoding-structure/">Khmer Encoding Structure website</a></li>
-                    <li><span class="bi-envelope-at"></span> <a href="mailto:camlingorg@gmail.com">Contact Us</a></li>
+                    <li><a href="https://www.idri.edu.kh/research/khmer-encoding-structure/" target="_blank">Khmer Encoding Structure website</a></li>
+                    <li><a href="https://github.com/sillsdev/khmer-character-specification/blob/master/encoding_structure/Khmer%20Encoding%20Structure.pdf" target="_blank">Khmer Encoding Structure proposal</a></li>
+                    <li><a href="mailto:camlingorg@gmail.com">Contact Us</a></li>
                 </ul>
           
                 <p>&copy; 2024 Cambodia Linguistics Organization</p>
@@ -124,13 +129,39 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="helpModalLabel">Help</h5>
+                    <h5 class="modal-title" id="helpModalLabel">Khmer Text Normalization Demo</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>...</p>
+                    <p>
+                        To use the Khmer Normalizer tool, simply enter your Khmer text into the input field labeled 
+                        "សូមសរសេរជាភាសាខ្មែរ". 
+                    </p>
+                    <p>
+                        Then, click the "<b>Normalize</b>" button to start the process. 
+                        The cleaned and corrected text will appear in the output box, where you can easily copy it or download 
+                        it as a .txt file.
+                    </p>
+                    <p>
+                        If you'd like to normalize longer paragraphs, you can also upload a .txt file 
+                        into "<b>Load File</b>" button for normalization.
+                    </p>
+
+                    <p><b>How to contribute:</b></p>
+
+                    <p>
+                        If you'd like to contribute to the improvement of the Khmer Normalizer, we welcome 
+                        your input! Whether you're reporting bugs, suggesting features, or sharing feedback, 
+                        your insights are highly valued. 
+                    </p>
+
+                    <p>
+                        Click <a href="https://github.com/clo-org-kh/khmer-text-normalizer-website/issues" target="_blank">here</a> to share your thoughts.
+                    </p>
+
+                    <p>&copy; 2024 Cambodia Linguistics Organization</p>
 
                 </div>
                 <div class="modal-footer">
@@ -151,7 +182,7 @@
             </div>
             <div class="icon">
                 <a href="https://github.com/sillsdev/khmer-character-specification/tree/master/python/scripts" target="_blank">
-                    <img class="svg" src="./image/python.svg">Khmer Encoding Structure specification
+                    <img class="svg" src="./image/python.svg">Python module
                 </a>
             </div>
             <div class="icon">
@@ -169,6 +200,7 @@
     <script src ="./js/outputgrid.js"></script>
     <script type="module" src="./js/khnormal.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <!-- Bootstrap/Modal -->
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>

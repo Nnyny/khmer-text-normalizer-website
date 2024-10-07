@@ -81,7 +81,7 @@
               charGrid.childNodes[x].className = 'cursor';
           }
           if (isTouchDevice() || charGrid.scrollHeight > charGrid.clientHeight) {
-              charGrid.childNodes[x].scrollIntoView();
+            //   charGrid.childNodes[x].scrollIntoView();
               document.body.scrollTop = 0;
           }
       }
