@@ -51,7 +51,6 @@
     }
     updateLogCursor();
     lastContent = outputkh.value;
-    compareGrids();
   }
 
   var lastSelStart = -1;
@@ -83,17 +82,20 @@
     //console.log('selStart='+selStart+', selLength='+selLength);
     if(lastSelStart != selStart || lastSelLength != selLength) {
       for(i = 0; i < charGrid.childNodes.length; i++) {
-        charGrid.childNodes[i].className = '';
+        charGrid.childNodes[i].classList.remove('cursor');
+        charGrid.childNodes[i].classList.remove('cursor-selected');
       }
 
       var x = selDirection == 'backward' ? selStart-1 : selStart+selLength - 1;
 
       if(x < 0) {
-        charGrid.className = 'cursor';
+        charGrid.classList.add('cursor');
       } else {
-        charGrid.className = '';
+        charGrid.classList.remove('cursor');
         if(x >= 0 && x < charGrid.childNodes.length) {
-          charGrid.childNodes[x].className = 'cursor';
+          charGrid.childNodes[x].classList.add('cursor');
+        } else {
+          charGrid.childNodes[x].classList.remove('cursor');
         }
         // if(isTouchDevice() || charGrid.scrollHeight > charGrid.clientHeight) {
         //   charGrid.childNodes[x].scrollIntoView();
@@ -102,7 +104,7 @@
       }
 
       for(i = selStart; i < selStart+selLength; i++) {
-        charGrid.childNodes[i].className += ' cursor-selected';
+        charGrid.childNodes[i].classList.add('cursor-selected');
       }
       lastSelStart = selStart;
       lastSelLength = selLength;
@@ -110,5 +112,5 @@
   }
 
   logContent();
-  window.setInterval(logContent, 100);
+  window.outputGridLogContent = logContent;
 })();
