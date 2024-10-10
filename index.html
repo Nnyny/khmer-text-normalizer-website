@@ -17,8 +17,10 @@
     <div class="container">
         <header>
             <div class="dropdown">
-                <button class="dropbtn"><i class="fa-solid fa-bars"></i></button>
-                <div class="dropdown-content">
+                <button class="dropbtn" onclick="toggleDropdown()">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <div class="dropdown-content" id="dropdownContent">
                     <div class="module-links">
                         <a href="https://www.npmjs.com/package/khmer-normalizer" target="_blank">NPM module</a>
                         <span>|</span>
@@ -59,14 +61,17 @@
             <div class="col">
                 <textarea id='inputkh' placeholder="សូមសរសេរជាភាសាខ្មែរ" class='font-khmer-busra-test'></textarea>
                 <div class="button-area">
-                    <button class="upload-button" type="button" id="clear-button">
+                    <button class="btn btn-outline-primary upload-button" type="button" id="example-btn">
+                        <i class="fa-solid fa-circle-exclamation"></i> Example
+                    </button>
+                    <button class="btn btn-outline-danger upload-button" type="button" id="clear-btn">
                         <i class="fa-solid fa-trash"></i> Clear
                     </button>
                     <input type="file" id="file-input" accept=".txt" style="display: none;">
-                    <button class="upload-button" type="button" id="load-file-button">
+                    <button class="btn btn-outline-primary upload-button" type="button" id="load-file-btn">
                         <i class="fa-solid fa-file-arrow-up"></i> Load File
                     </button>
-                    <button class="upload-button" type="button" id="normalizetxt">
+                    <button class="btn btn-primary upload-button" type="button" id="normalize-btn">
                         <i class="fa-solid fa-wand-magic-sparkles"></i> Normalize
                     </button>
                 </div>
@@ -75,9 +80,9 @@
             <div class="col">
                 <textarea id="outputkh" name="normalized_text" class='font-khmer-busra-test' readonly></textarea>
                 <div class="button-area">
-                    <button class="upload-button" type="button" id="copy-button">
+                    <button class="btn btn-outline-primary upload-button" type="button" id="copy-btn">
                         <i class="fa-solid fa-copy"></i> Copy Text</button>
-                    <button class="upload-button" type="button" id="download-button">
+                    <button class="btn btn-outline-primary upload-button" type="button" id="download-btn">
                         <i class="fa-solid fa-download"></i> Download</button>
                 </div>
             </div>
@@ -96,8 +101,9 @@
             </div>
             <div class="modal-body">
                 <p>
-                    This website showcases the capabilities of the Khmer Normalizer npm module, which is designed to transform 
-                    Khmer text into a correctly encoded format, ensuring both accuracy and consistency.
+                    This website highlights what the Khmer Text Normalization can do. It's designed to transform 
+                    Khmer text into a standardized format, making sure it's encoded correctly and 
+                    remains accurate and consistent.
                 </p>
                 <p>More details:</p>
                 <ul>
@@ -136,13 +142,13 @@
                 </div>
                 <div class="modal-body">
                     <p>
-                        To use the Khmer Normalizer tool, simply enter your Khmer text into the input field labeled 
+                        To use the Khmer Text Normalization tool, simply enter Khmer text into the input field labeled 
                         "សូមសរសេរជាភាសាខ្មែរ". 
                     </p>
                     <p>
                         Then, click the "<b>Normalize</b>" button to start the process. 
-                        The cleaned and corrected text will appear in the output box, where you can easily copy it or download 
-                        it as a .txt file.
+                        The cleaned and corrected text will appear in the output box, where you can easily copy or download 
+                        it as a .txt file format.
                     </p>
                     <p>
                         If you'd like to normalize longer paragraphs, you can also upload a .txt file 
@@ -152,13 +158,9 @@
                     <p><b>How to contribute:</b></p>
 
                     <p>
-                        If you'd like to contribute to the improvement of the Khmer Normalizer, we welcome 
-                        your input! Whether you're reporting bugs, suggesting features, or sharing feedback, 
-                        your insights are highly valued. 
-                    </p>
-
-                    <p>
-                        Click <a href="https://github.com/clo-org-kh/khmer-text-normalizer-website/issues" target="_blank">here</a> to share your thoughts.
+                        Whether you're reporting bugs, suggesting features, or sharing feedback, 
+                        click <a href="https://github.com/clo-org-kh/khmer-text-normalizer-website/issues" target="_blank">here</a> to share your thoughts.
+                        Your insights are highly valued!
                     </p>
 
                     <p>&copy; 2024 Cambodia Linguistics Organization</p>

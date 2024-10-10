@@ -45,7 +45,8 @@
           }
       }
       updateLogCursor();
-      checkCharacterCount()
+      checkCharacterCount();
+      
   }
 
     // Check character count after logging content
@@ -90,7 +91,7 @@
           charGrid.childNodes[i].className += ' cursor-selected';
       }
   }
-
+  
   function calculateLengthByCodepoint(text, base, x) {
       var stop = base + x;
       while (base < stop - 1) {
