@@ -51,6 +51,7 @@
     }
     updateLogCursor();
     lastContent = outputkh.value;
+    compareGrids();
   }
 
   var lastSelStart = -1;
