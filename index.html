@@ -4,36 +4,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Khmer Text Normalization</title>
-    <link rel="icon" href="image/KSE-Logo-Main.png">
+    <title>Khmer Text Normalization Demo</title>
+    <link rel="icon" href="./image/KES-logo-white.png">
 
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./fonts/font.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Khmer:wght@100..900&family=Playwrite+AR:wght@100..400&family=Playwrite+MX:wght@100..400&display=swap">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
 </head>
 <body>
     <div class="container">
         <header>
-            <div>
-                <div class="dropdown">
-                    <button class="dropbtn"><i class="fa-solid fa-bars"></i></button>
-                    <div class="dropdown-content">
-                        <a href="https://github.com/sillsdev/khmer-character-specification" target="_blank">Normalizer Code</a>
-                        <a href="https://xn--j2e7beiw1lb2hqg.com/" target="_blank">ភាសាខ្មែរ.com</a>
+            <div class="dropdown">
+                <button class="dropbtn" onclick="toggleDropdown()">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+                <div class="dropdown-content" id="dropdownContent">
+                    <div class="module-links">
+                        <a href="https://www.npmjs.com/package/khmer-normalizer" target="_blank">NPM module</a>
+                        <span>|</span>
+                        <a href="https://github.com/sillsdev/khmer-character-specification/tree/master/python/scripts" target="_blank">Python module</a>
                     </div>
+                    <a href="https://www.idri.edu.kh/research/khmer-encoding-structure/" target="_blank">Khmer Encoding Structure website</a>
+                    <a href="https://xn--j2e7beiw1lb2hqg.com/" target="_blank">ភាសាខ្មែរ.com</a>
+                    <a href="#" data-toggle="modal" data-target="#aboutUs">About Us</a>
+                    <a href="#" data-toggle="modal" data-target="#help">Help</a>
                 </div>
             </div>
+
             <div class="logo">
-                <img src="/image/KES-logo-blue.png">
-                <img src="/image/sil_glyph_logo_taiheritagepro_rgb.png">
+                <img src="./image/KES-logo-navy.png">
+                <img src="./image/clo.png">
             </div>
         </header>
 
-        <div class="title">Khmer Text Normalizer</div>
-        <div class="subtitle">Convert Khmer Texts To The Correct Unicode Form</div>
+        <div class="title">Khmer Text Normalization Demo</div>
+        <div class="subtitle">Convert Khmer texts to a regular Khmer Encoding Structure form</div>
 
+        <!-- grid -->
         <div class="row">
             <div class="col">
                 <div id = "content">
@@ -47,40 +56,154 @@
             </div>
         </div>
 
+        <!-- textarea -->
         <div class="row">
             <div class="col">
-                <textarea id="inputkh" name="input_text" placeholder="សូមសរសេរជាភាសាខ្មែរ"></textarea>
+                <textarea id='inputkh' placeholder="សូមសរសេរជាភាសាខ្មែរ" class='font-khmer-busra-test'></textarea>
                 <div class="button-area">
-                    <button class="upload-button" type="button" id="normalizetxt">
-                        <i class="fa-solid fa-wand-magic-sparkles"></i> Normalize
+                    <button class="btn btn-outline-primary upload-button" type="button" id="example-btn">
+                        <i class="fa-solid fa-circle-exclamation"></i> Example
+                    </button>
+                    <button class="btn btn-outline-danger upload-button" type="button" id="clear-btn">
+                        <i class="fa-solid fa-trash"></i> Clear
                     </button>
                     <input type="file" id="file-input" accept=".txt" style="display: none;">
-                    <button class="upload-button" type="button" id="load-file-button">
+                    <button class="btn btn-outline-primary upload-button" type="button" id="load-file-btn">
                         <i class="fa-solid fa-file-arrow-up"></i> Load File
                     </button>
-                    <button class="upload-button" type="button" id="clear-button">
-                        <i class="fa-solid fa-trash"></i> Clear
+                    <button class="btn btn-primary upload-button" type="button" id="normalize-btn">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i> Normalize
                     </button>
                 </div>
             </div>
 
             <div class="col">
-                <textarea id="outputkh" name="normalized_text" readonly></textarea>
+                <textarea id="outputkh" name="normalized_text" class='font-khmer-busra-test' readonly></textarea>
                 <div class="button-area">
-                    <button class="upload-button" type="button" id="copy-button">
+                    <button class="btn btn-outline-primary upload-button" type="button" id="copy-btn">
                         <i class="fa-solid fa-copy"></i> Copy Text</button>
-                    <button class="upload-button" type="button" id="download-button">
+                    <button class="btn btn-outline-primary upload-button" type="button" id="download-btn">
                         <i class="fa-solid fa-download"></i> Download</button>
                 </div>
             </div>
         </div>
+    </div>
+  
+    <!-- Modal -->
+    <div class="modal fade" id="aboutUs" tabindex="-1" role="dialog" aria-labelledby="aboutModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="aboutModalLabel">About Khmer Text Normalization Demo</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    This website highlights what the Khmer Text Normalization can do. It's designed to transform 
+                    Khmer text into a standardized format, making sure it's encoded correctly and 
+                    remains accurate and consistent.
+                </p>
+                <p>More details:</p>
+                <ul>
+                    <li><a href="https://www.idri.edu.kh/research/khmer-encoding-structure/" target="_blank">Khmer Encoding Structure website</a></li>
+                    <li><a href="https://github.com/sillsdev/khmer-character-specification/blob/master/encoding_structure/Khmer%20Encoding%20Structure.pdf" target="_blank">Khmer Encoding Structure proposal</a></li>
+                    <li><a href="mailto:camlingorg@gmail.com">Contact Us</a></li>
+                </ul>
+          
+                <p>&copy; 2024 Cambodia Linguistics Organization</p>
+                <p><img src="image/clo-big.png" style="width: 100%" alt="Cambodia Linguistics Organization logo"></p>
 
+                <p style="text-align: center">
+                    <a href="https://www.sil.org" target="_blank"><img src="image/sil.png" style="width:30%" alt="SIL Global"></a>
+                    <a href="https://npic.edu.kh" target="_blank"><img src="image/npic.png" style="width:30%" alt="National Polytechnic Institute of Cambodia"></a>
+                    <a href="https://www.cadt.edu.kh" target="_blank"><img src="image/cadt.png" style="width:30%" alt="Cambodia Academy of Digital Technology"></a>
+                </p>
+
+
+            </div>
+            <div class="modal-footer">
+            <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+            <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+            </div>
+        </div>
+        </div>
     </div>
 
+    <div class="modal fade" id="help" tabindex="-1" role="dialog" aria-labelledby="helpModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="helpModalLabel">Khmer Text Normalization Demo</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        To use the Khmer Text Normalization tool, simply enter Khmer text into the input field labeled 
+                        "សូមសរសេរជាភាសាខ្មែរ". 
+                    </p>
+                    <p>
+                        Then, click the "<b>Normalize</b>" button to start the process. 
+                        The cleaned and corrected text will appear in the output box, where you can easily copy or download 
+                        it as a .txt file format.
+                    </p>
+                    <p>
+                        If you'd like to normalize longer paragraphs, you can also upload a .txt file 
+                        into "<b>Load File</b>" button for normalization.
+                    </p>
+
+                    <p><b>How to contribute:</b></p>
+
+                    <p>
+                        Whether you're reporting bugs, suggesting features, or sharing feedback, 
+                        click <a href="https://github.com/clo-org-kh/khmer-text-normalizer-website/issues" target="_blank">here</a> to share your thoughts.
+                        Your insights are highly valued!
+                    </p>
+
+                    <p>&copy; 2024 Cambodia Linguistics Organization</p>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
     
-    <script src="/js/index.js"></script>
-    <script src="/js/inputgrid.js"></script>
-    <script src ="/js/outputgrid.js"></script>
-    <script type="module" src="/js/khnormal.js"></script>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="icon">
+                <a href="https://github.com/clo-org-kh/khmer-text-normalizer-website" target="_blank">
+                    <img class="svg" src="./image/github.svg">khmer-text-normalizer-website
+                </a>
+            </div>
+            <div class="icon">
+                <a href="https://github.com/sillsdev/khmer-character-specification/tree/master/python/scripts" target="_blank">
+                    <img class="svg" src="./image/python.svg">Python module
+                </a>
+            </div>
+            <div class="icon">
+                <a href="https://www.npmjs.com/package/khmer-normalizer" target="_blank">
+                    <img class="svg" src="./image/npm.svg">khmer-normalizer
+                </a>
+            </div>
+        </div>
+    </footer>
+
+
+    
+    <script src="./js/index.js"></script>
+    <script src="./js/inputgrid.js"></script>
+    <script src ="./js/outputgrid.js"></script>
+    <script type="module" src="./js/khnormal.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <!-- Bootstrap/Modal -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>

@@ -9,8 +9,8 @@
   }
 
   function addCharElements(text, code) {
-      var ebox = document.createElement('div'), 
-          echar = document.createElement('div'), 
+      var ebox = document.createElement('div'),
+          echar = document.createElement('div'),
           ecode = document.createElement('div');
       echar.textContent = text;
       echar.className = 'char-char keymanweb-font';
@@ -45,7 +45,20 @@
           }
       }
       updateLogCursor();
+      checkCharacterCount();
+
   }
+
+    // Check character count after logging content
+    function checkCharacterCount() {
+        const charCount = charGrid.childNodes.length;
+        if (charCount >= 17) {
+            charGrid.classList.add("hidden");
+        } else {
+            charGrid.classList.remove("hidden");
+        }
+    }
+
 
   function updateLogCursor() {
       var i, selStart, selLength, selDirection;
@@ -53,30 +66,30 @@
       selLength = inputkh.selectionEnd - inputkh.selectionStart;
       selDirection = inputkh.selectionDirection;
 
-      // Adjust for surrogate pairs if necessary
       selLength = calculateLengthByCodepoint(inputkh.value, selStart, selLength);
       selStart = calculateLengthByCodepoint(inputkh.value, 0, selStart);
 
       for (i = 0; i < charGrid.childNodes.length; i++) {
-          charGrid.childNodes[i].className = '';
+          charGrid.childNodes[i].classList.remove('cursor');
+          charGrid.childNodes[i].classList.remove('cursor-selected');
       }
 
       var x = selDirection == 'backward' ? selStart - 1 : selStart + selLength - 1;
       if (x < 0) {
-          charGrid.className = 'cursor';
+          charGrid.classList.add('cursor');
       } else {
-          charGrid.className = '';
+          charGrid.classList.remove('cursor');
           if (x >= 0 && x < charGrid.childNodes.length) {
-              charGrid.childNodes[x].className = 'cursor';
+              charGrid.childNodes[x].classList.add('cursor');
           }
           if (isTouchDevice() || charGrid.scrollHeight > charGrid.clientHeight) {
-              charGrid.childNodes[x].scrollIntoView();
+            //   charGrid.childNodes[x].scrollIntoView();
               document.body.scrollTop = 0;
           }
       }
 
       for (i = selStart; i < selStart + selLength; i++) {
-          charGrid.childNodes[i].className += ' cursor-selected';
+          charGrid.childNodes[i].classList.add('cursor-selected');
       }
   }
 
@@ -96,10 +109,10 @@
       return ('ontouchstart' in window || navigator.maxTouchPoints);
   }
 
-  inputkh.addEventListener('input', logContent);  // Update on input events
+  inputkh.addEventListener('input', logContent);
   inputkh.addEventListener('click', updateLogCursor);
   inputkh.addEventListener('keydown', updateLogCursor);
 
-  logContent();  // Initial content load
-  window.setInterval(logContent, 100);
+  logContent();
+  window.inputGridLogContent = logContent;
 })();
